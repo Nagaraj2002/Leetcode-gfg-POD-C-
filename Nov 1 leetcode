@@ -1,0 +1,34 @@
+var findMode = function(root) {
+    const inorderr = [];
+    
+    const inorder = (node) => {
+        if (!node) return;
+        inorderr.push(node.val);
+        inorder(node.left);
+        inorder(node.right);
+    };
+    
+    inorder(root);
+    
+    const freq = {};
+    let maxx = 0;
+    
+    inorderr.forEach(val => {
+        if (freq[val]) {
+            freq[val]++;
+        } else {
+            freq[val] = 1;
+        }
+        maxx = Math.max(maxx, freq[val]);
+    });
+    
+    const result = [];
+    
+    for (const val in freq) {
+        if (freq[val] === maxx) {
+            result.push(parseInt(val));
+        }
+    }
+    
+    return result;
+};
