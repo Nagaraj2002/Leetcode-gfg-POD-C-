@@ -1,0 +1,26 @@
+
+class Solution{
+  public:
+    int minDist(int a[], int n, int x, int y) {
+        // code here
+         int minDist = INT_MAX;
+    int lastX = -1;
+    int lastY = -1;
+
+    for (int i = 0; i < n; i++) {
+        if (a[i] == x) {
+            if (lastY != -1) {
+                minDist = std::min(minDist, i - lastY);
+            }
+            lastX = i;
+        } else if (a[i] == y) {
+            if (lastX != -1) {
+                minDist = std::min(minDist, i - lastX);
+            }
+            lastY = i;
+        }
+    }
+
+    return (minDist == INT_MAX) ? -1 : minDist;
+    }
+};
