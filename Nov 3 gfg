@@ -1,0 +1,25 @@
+//User function template for C++
+class Solution{
+public:
+	// Function to check if the
+	// Pythagorean triplet exists or not
+	bool checkTriplet(int arr[], int n) {
+	    vector<int> count(1001, 0);
+	    for(int i = 0; i < n; i++) count[arr[i]]++;
+	    
+	    for(int i = 0; i < 1001; i++) {
+	        if(count[i] == 0) continue;
+	        
+	        for(int j = i+1; j < 1001; j++) {
+	            if(count[j] == 0) continue;
+	            
+	            int s = i*i + j*j;
+	            int sq = sqrt(s);
+	            
+	            if((sq*sq == s) && (count[sq] > 0)) return true;
+	        }
+	    }
+	    
+	    return false;
+	}
+};
