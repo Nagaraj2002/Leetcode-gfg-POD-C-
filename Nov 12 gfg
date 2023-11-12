@@ -1,0 +1,12 @@
+
+class Solution {
+public:
+    bool isRotated(string str1, string str2) {
+        int n1 = str1.size();
+        int n2 = str2.size();
+        
+        string clockwise = str1.substr(2) + str1.substr(0,2);
+        string antiClockwise = str1.substr(n1-2) + str1.substr(0, n1-2);
+        return (clockwise == str2 || antiClockwise == str2);
+    }
+};
