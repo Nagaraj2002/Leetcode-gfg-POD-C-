@@ -1,0 +1,64 @@
+/*Complete the function below
+Node is as follows:
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+    
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+};*/
+
+class Solution
+{ 
+private:
+    Node* createCDLL(Node* root) {
+        if (root == nullptr) return nullptr;
+
+        Node* leftList = createCDLL(root->left);
+        Node* rightList = createCDLL(root->right);
+
+        // Make the root a circular doubly linked list of length 1.
+        root->left = root;
+        root->right = root;
+
+        // Merge leftList, root, and rightList into a single circular doubly linked list.
+        return concatenate(concatenate(leftList, root), rightList);
+    }
+
+    Node* concatenate(Node* a, Node* b) {
+        if (a == nullptr) return b;
+        if (b == nullptr) return a;
+
+        Node* aEnd = a->left;
+        Node* bEnd = b->left;
+
+        aEnd->right = b;
+        b->left = aEnd;
+
+        a->left = bEnd;
+        bEnd->right = a;
+
+        return a;
+    }
+    
+  public:
+    //Function to convert binary tree into circular doubly linked list.
+    Node *bTreeToCList(Node *root)
+    {
+    //add code here.
+    if (root == nullptr) return nullptr;
+
+        Node* head = createCDLL(root);
+
+        // Set the left and right pointers of the head and tail to make it circular.
+        head->left->right = head;
+        head->right->left = head;
+
+        return head;
+     
+    }
+};
