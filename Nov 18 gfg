@@ -1,0 +1,32 @@
+/*
+struct Node
+{
+    int data;
+    Node * next;
+    Node * prev;
+    Node (int x)
+    {
+        data=x;
+        next=NULL;
+        prev=NULL;
+    }
+        
+};
+*/
+class Solution
+{
+    public:
+    Node* reverseDLL(Node * head)
+    {
+        //Your code here
+        Node*curr=head,*pre=NULL;
+        while(curr)
+        {
+            curr->prev=curr->next;
+            curr->next=pre;
+            pre=curr;
+            curr=curr->prev;
+        }
+        return pre;
+    }
+};
