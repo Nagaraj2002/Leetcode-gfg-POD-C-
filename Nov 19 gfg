@@ -1,0 +1,48 @@
+/* The structure of the Linked list Node is as follows:
+
+struct Node
+{
+    int data;
+    Node *next;
+    Node(int val)
+    {
+        data=val;
+        next=NULL;
+    }
+};
+
+*/
+
+class Solution
+{
+    public:
+    Node* findIntersection(Node* head1, Node* head2)
+    {
+        // code goes here.
+        queue<int>q;
+        Node* &first=head1;
+        Node* &second =head2;
+        while(first!=NULL&&second!=NULL){
+            if(first->data==second->data){
+                q.push(first->data);
+                first=first->next;
+                second=second->next;
+            }
+            else if(first->data>second->data){
+                second=second->next;
+            }
+            else{
+                first=first->next;
+            }
+        }
+        Node* head= new Node(-1);
+        Node* track=head;
+        while(!q.empty()){
+            int temp=q.front();
+            q.pop();
+            track->next=new Node(temp);
+            track=track->next;
+        }
+        return head->next;
+    }
+};
