@@ -1,0 +1,33 @@
+/*
+Structure of the node of the tree is as
+struct Node {
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+class Solution{
+    public:
+    
+    bool solve(struct Node* l,struct Node* r){
+        if(!l && !r)
+            return true;
+        if(!l || !r)
+            return false;
+        return l->data == r->data && solve(l->left,r->right) && solve(l->right,r->left);
+    }
+    
+    // return true/false denoting whether the tree is Symmetric or not
+    bool isSymmetric(struct Node* root)
+    {
+	    // Code here
+	    if(!root)
+	        return true;
+	    return solve(root->left,root->right);
+    }
+};
