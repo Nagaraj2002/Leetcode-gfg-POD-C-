@@ -1,0 +1,26 @@
+// #define ll long long
+class Solution{
+public:
+int mod =1e9+7;
+    vector<long long> nthRowOfPascalTriangle(int n) {
+       vector<vector<long long int>> r(n);
+       
+       for(int i = 0;i<n;i++)
+       {
+           r[i].resize(i+1);
+           r[i][0] = r[i][i] = 1;
+           
+            for (int j = 1; j < i; j++)
+                r[i][j] = (r[i - 1][j - 1] + r[i - 1][j])%mod;
+       }
+       
+       vector<long long int> res;
+       
+       for(int i = 0;i<r[n-1].size();i++)
+       {
+           res.push_back(r[n-1][i]);
+           
+       }
+       return res;
+    }
+};
