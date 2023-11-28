@@ -1,0 +1,13 @@
+// User function Template for C++
+
+class Solution {
+  public:
+    int sumOfDependencies(vector<int> a[], int v) {
+        int c = 0;
+        for(int i = 0 ; i < v ; i++)
+        {
+            for(auto j : a[i]) c++;
+        }
+        return c;
+    }
+};
