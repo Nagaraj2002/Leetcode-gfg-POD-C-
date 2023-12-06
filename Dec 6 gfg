@@ -1,0 +1,23 @@
+// User function Template for C++
+
+class Solution {
+  public:
+    int countX(int L, int R, int X) {
+        int occurences = 0;
+        
+        for(int i=L+1;i<R;i++){
+            // convert integer to string
+            string str = to_string(i);
+            // check if any digit of integer match with the X
+            int j = 0;
+            while(j < str.size()){
+                if((str[j]-48)==X){
+                    occurences++;
+                }
+                j++;
+            }
+        }
+        
+        return occurences;
+    }
+};
