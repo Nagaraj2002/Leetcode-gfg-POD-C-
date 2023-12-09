@@ -1,0 +1,36 @@
+
+class Solution {
+  private:
+    vector<bool> SieveOfEratosthenes(int n) {
+        vector<bool> prime(n+1,true);
+        for (int p = 2; p * p <= n; p++) {
+            if (prime[p] == true) {
+                for (int i = p * p; i <= n; i += p)
+                    prime[i] = false;
+            }
+        }
+        return prime;
+    }
+    int getDigitSum(int n) {
+        int sum=0;
+        while(n) {
+            sum+=(n%10);
+            n/=10;
+        }
+        return sum;
+    }
+  public:
+    int smithNum(int n) {
+        vector<bool> prime=SieveOfEratosthenes(n+1);
+        int digitSum=getDigitSum(n);
+        int num=n,primeFactorsSum=0;
+        for(int i=2;n!=1;++i) {
+            while(n%i == 0) {
+                primeFactorsSum+=getDigitSum(i);
+                n/=i;
+            }
+        }
+        // cout<<digitSum<<" "<<primeFactorsSum<<" "<<prime[num]<<endl;
+        return digitSum==primeFactorsSum && !prime[num];
+    }
+};
