@@ -1,0 +1,21 @@
+//User function template for C++
+class Solution{
+public:
+	// #define ll long long
+	ll countStrings(int n) {
+	    ll ans=0;
+	    ll zeroend=1;
+	    ll oneend=1;
+	    ans=zeroend+oneend;
+	    if(n==1) return ans;
+	    int i=2;
+	    while(i<=n)
+	    {
+	        oneend=zeroend%1000000007;
+	        zeroend=ans%1000000007;
+	        ans=(zeroend+oneend)%1000000007;
+	        i++;
+	    }
+	    return ans%1000000007;
+	}
+};
