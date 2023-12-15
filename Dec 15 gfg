@@ -1,0 +1,27 @@
+
+
+int  MOD  = 1e9 + 7;
+
+int dp[100001];
+
+class Solution{
+	public:
+	
+	int steps(int n)
+	{
+	    
+	    if(dp[n] != -1) return dp[n] % MOD;
+	    
+	    if(n < 0)
+	        return 0;
+	    
+	    if(n == 0) return 1;
+	       
+	    return dp[n] = (steps(n - 1) % MOD  + steps(n - 2) % MOD) % MOD;
+	}
+		int nthPoint(int n){
+		    // Code here
+		    memset(dp,-1,sizeof(dp));
+	        return steps(n) % MOD;	    
+		}
+};
